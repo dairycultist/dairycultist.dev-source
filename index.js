@@ -10,21 +10,50 @@ const { createServer } = require("node:http");
 createServer((req, res) => {
 // createServer(options, (req, res) => {
 
-    const request = req.method + " " + req.url;
+	console.log("\x1b[90m" + req.method + " " + req.url + "\x1b[0m");
 
-    console.log("      \x1b[90m" + request + "\x1b[0m");
+	if (req.method == "POST" && req.url == "/guestbook") {
+
+		let body = "";
+
+		req.on("data", chunk => {
+			body += chunk.toString();
+		});
+
+		req.on("end", () => {
+
+			let parts = body.substring(10).split("&message=");
+			
+			console.log(parts);
+		});
+
+	}
 
 	res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(`
+	res.end(`
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>dairycultist.dev</title>
-	</head>
-	<body>
-		I like Minecraft, medieval fantasy, boomer shooters, and inordinately fat women.
-	</body>
+<head>
+	<meta charset="UTF-8">
+	<title>dairycultist.dev</title>
+</head>
+<body>
+	<p>I like Minecraft clones, medieval fantasy, boomer shooters, and drawings of inordinately fat women (anime/furry/pony).</p>
+
+	<p>Do I blog? No. Am I active on forums? No. But do I have any finished projects for you to see? Also no.</p>
+
+	<h2>Guestbook</h2>
+	<form action="guestbook" method="post">
+
+		<label for="signature">Signature:</label>
+		<input type="text" id="signature" name="signature" placeholder="anonymous"><br><br>
+
+		<label for="message">Message:</label>
+		<input type="text" id="message" name="message"><br><br>
+
+		<input type="submit" value="Submit">
+	</form>
+</body>
 </html>
 	`);
 
