@@ -27,19 +27,14 @@ createServer(options, (req, res) => {
 
 		let body = "";
 
-		req.on("data", chunk => {
-			body += chunk.toString();
-		});
+		req.on("data", chunk => body += chunk.toString());
 
 		req.on("end", () => {
 
 			let parts = body.substring(10).split("\r\nmessage=");
 
-			console.log(body);
-			console.log(parts);
-
 			let signature = sanitizeHtml(parts[0].trim(), { allowedTags: [], allowedAttributes: {} });
-			let message =   sanitizeHtml(parts[1].trim(), { allowedTags: [], allowedAttributes: {} });
+			let message   = sanitizeHtml(parts[1].trim(), { allowedTags: [], allowedAttributes: {} });
 
 			if (signature.length == 0)
 				signature = "anonymous";
