@@ -22,7 +22,7 @@ createServer(options, (req, res) => {
 	if (fs.existsSync(GUESTBOOK_FILEPATH))
 		guestbookContent = fs.readFileSync(GUESTBOOK_FILEPATH, "utf-8");
 
-	if (req.method == "GET") {
+	if (req.method == "GET" || req.method == "HEAD") {
 
 		replyWithHomepage(res, guestbookContent);
 
