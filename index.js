@@ -1,5 +1,8 @@
 // sudo node index.js
 
+const HOMEPAGE_FILEPATH = "./homepage.html";
+const GUESTBOOK_FILEPATH = "../guestbook.txt";
+
 const fs = require("fs");
 const { createServer } = require("node:https");
 
@@ -16,8 +19,8 @@ createServer(options, (req, res) => {
 
 	let guestbookContent = "";
 
-	if (fs.existsSync("../guestbook.txt"))
-		guestbookContent = fs.readFileSync("../guestbook.txt", "utf-8");
+	if (fs.existsSync(GUESTBOOK_FILEPATH))
+		guestbookContent = fs.readFileSync(GUESTBOOK_FILEPATH, "utf-8");
 
 	if (req.method == "GET") {
 
@@ -44,7 +47,7 @@ createServer(options, (req, res) => {
 
 			replyWithHomepage(res, guestbookContent);
 
-			fs.writeFileSync("../guestbook.txt", guestbookContent, "utf-8");
+			fs.writeFileSync(GUESTBOOK_FILEPATH, guestbookContent, "utf-8");
 		});
 
 	} else {
@@ -58,5 +61,5 @@ createServer(options, (req, res) => {
 function replyWithHomepage(res, guestbookContent) {
 
 	res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-	res.end(fs.readFileSync("./homepage.html", "utf-8").replace("[[[guestbookContent]]]", guestbookContent));
+	res.end(fs.readFileSync(HOMEPAGE_FILEPATH, "utf-8").replace("[[[guestbookContent]]]", guestbookContent));
 }
