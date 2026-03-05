@@ -1,3 +1,5 @@
+// sudo node index.js
+
 const fs = require("fs");
 const { createServer } = require("node:https");
 
@@ -55,7 +57,7 @@ createServer(options, (req, res) => {
 		res.end("404 error");
 	}
 
-}).listen(443, "129.153.2.165", () => { console.log(`Starting @ https://dairycultist.dev/`); });
+}).listen(443, "0.0.0.0", () => { console.log(`Starting @ https://dairycultist.dev/`); });
 
 function replyWithHomepage(res, guestbookContent) {
 
