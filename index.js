@@ -44,7 +44,7 @@ createServer((req, res) => {
 			if (signature.length == 0)
 				signature = "anonymous";
 			
-			guestbookContent = "<strong>" + signature + "</strong><br>" + message + "<br><br>" + guestbookContent;
+			guestbookContent = message + "<br><i> — " + signature + "</i><br><br>" + guestbookContent;
 
 			replyWithHomepage(res, guestbookContent);
 
