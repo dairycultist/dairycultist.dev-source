@@ -62,5 +62,5 @@ createServer(options, (req, res) => {
 function replyWithHomepage(res, guestbookContent) {
 
 	res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-	res.end(fs.readFileSync("./guestbook.txt", "utf-8").replace("[[[guestbookContent]]]", guestbookContent));
+	res.end(fs.readFileSync("./homepage.html", "utf-8").replace("[[[guestbookContent]]]", guestbookContent));
 }
