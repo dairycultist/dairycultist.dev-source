@@ -62,31 +62,5 @@ createServer(options, (req, res) => {
 function replyWithHomepage(res, guestbookContent) {
 
 	res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-	res.end(`
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>dairycultist.dev</title>
-</head>
-<body>
-	<p>I like Minecraft clones, medieval fantasy, boomer shooters, and drawings of inordinately fat women (anime/furry/pony).</p>
-
-	<p>Do I blog? No. Am I active on forums? No. But do I have any finished projects for you to see? Also no.</p>
-
-	<h2>Guestbook</h2>
-	<form action="/guestbook" method="POST" enctype="text/plain">
-
-		<label for="signature">Signature:</label>
-		<input type="text" id="signature" name="signature" placeholder="anonymous"><br><br>
-
-		<label for="message">Message:</label>
-		<input type="text" id="message" name="message"><br><br>
-
-		<input type="submit" value="Submit">
-	</form>
-	<div>` + guestbookContent + `</div>
-</body>
-</html>
-	`);
+	res.end(fs.readFileSync("./guestbook.txt", "utf-8").replace("[[[guestbookContent]]]", guestbookContent));
 }
