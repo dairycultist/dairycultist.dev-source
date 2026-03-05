@@ -1,16 +1,14 @@
 const fs = require("fs");
-// const { createServer } = require("node:https");
-const { createServer } = require("node:http");
+const { createServer } = require("node:https");
 
 const sanitizeHtml = require("sanitize-html"); // npm install sanitize-html
 
-// const options = {
-//     key: fs.readFileSync("../private.key.pem"),  // path to ssl PRIVATE key from Porkbun
-//     cert: fs.readFileSync("../domain.cert.pem"), // path to ssl certificate from Porkbun
-// };
+const options = {
+    key: fs.readFileSync("../private.key.pem"),  // path to ssl PRIVATE key from Porkbun
+    cert: fs.readFileSync("../domain.cert.pem"), // path to ssl certificate from Porkbun
+};
 
-createServer((req, res) => {
-// createServer(options, (req, res) => {
+createServer(options, (req, res) => {
 
 	console.log("\x1b[90m" + req.method + " " + req.url + "\x1b[0m");
 
@@ -57,8 +55,7 @@ createServer((req, res) => {
 		res.end("404 error");
 	}
 
-}).listen(3000, "localhost", () => { console.log(`Starting @ http://localhost:3000`); });
-// }).listen(443, "129.153.2.165", () => { console.log(`Starting @ https://dairycultist.dev/`); });
+}).listen(443, "129.153.2.165", () => { console.log(`Starting @ https://dairycultist.dev/`); });
 
 function replyWithHomepage(res, guestbookContent) {
 
