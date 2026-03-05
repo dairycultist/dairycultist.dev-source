@@ -16,8 +16,8 @@ createServer(options, (req, res) => {
 
 	let guestbookContent = "";
 
-	if (fs.existsSync("./guestbook.txt"))
-		guestbookContent = fs.readFileSync("./guestbook.txt", "utf-8");
+	if (fs.existsSync("../guestbook.txt"))
+		guestbookContent = fs.readFileSync("../guestbook.txt", "utf-8");
 
 	if (req.method == "GET") {
 
@@ -38,12 +38,13 @@ createServer(options, (req, res) => {
 
 			if (signature.length == 0)
 				signature = "anonymous";
-			
-			guestbookContent = message + "<br><i> — " + signature + "</i><br><br>" + guestbookContent;
+
+			if (message.length != 0)			
+				guestbookContent = message + "<br><i> — " + signature + "</i><br><br>" + guestbookContent;
 
 			replyWithHomepage(res, guestbookContent);
 
-			fs.writeFileSync("./guestbook.txt", guestbookContent, "utf-8");
+			fs.writeFileSync("../guestbook.txt", guestbookContent, "utf-8");
 		});
 
 	} else {
