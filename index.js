@@ -1,7 +1,7 @@
 // sudo node index.js
 
 const HOMEPAGE_FILEPATH = "./homepage.html";
-const GUESTBOOK_FILEPATH = "../guestbook.txt";
+const GUESTBOOK_FILEPATH = "./guestbook.txt";
 
 const fs = require("fs");
 const { createServer } = require("node:https");
@@ -43,7 +43,7 @@ createServer(options, (req, res) => {
 				signature = "anonymous";
 
 			if (message.length != 0)			
-				guestbookContent = message + "<br><i> — " + signature + "</i><br><br>" + guestbookContent;
+				guestbookContent = message + "<br><i> — " + signature + "</i><br><br>\n" + guestbookContent;
 
 			replyWithHomepage(res, guestbookContent);
 
