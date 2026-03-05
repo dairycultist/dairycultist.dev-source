@@ -36,8 +36,8 @@ createServer(options, (req, res) => {
 			console.log(body);
 			console.log(parts);
 
-			let signature = sanitizeHtml(parts[0].trim());
-			let message = sanitizeHtml(parts[1].trim());
+			let signature = sanitizeHtml(parts[0].trim(), { allowedTags: [], allowedAttributes: {} });
+			let message =   sanitizeHtml(parts[1].trim(), { allowedTags: [], allowedAttributes: {} });
 
 			if (signature.length == 0)
 				signature = "anonymous";
