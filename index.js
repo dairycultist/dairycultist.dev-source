@@ -24,7 +24,7 @@ createServer(options, (req, res) => {
 			res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
 			res.end(fs.readFileSync(HOMEPAGE_FILEPATH, "utf-8"));
 			
-		} else {
+		} else if (req.url == "/cow.png") { {
 
 			try {
 				const img = fs.readFileSync("./cow.png");
@@ -34,6 +34,11 @@ createServer(options, (req, res) => {
 				res.writeHead(404, { "Content-Type": "text/plain" });
     			res.end("cow.png not found");
 			}
+			
+		} else {
+			
+			res.writeHead(404, { "Content-Type": "text/plain" });
+			res.end(req.url + " not found");
 		}
 
 	} else {
