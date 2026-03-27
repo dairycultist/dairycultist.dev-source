@@ -38,13 +38,13 @@ createServer(options, (req, res) => {
 		} else {
 			
 			res.writeHead(404, { "Content-Type": "text/plain" });
-			res.end(req.url + " not found");
+			res.end(req.url + " Not Found");
 		}
 
 	} else {
 
-		res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-		res.end("404 error");
+		res.writeHead(501, { "Content-Type": "text/plain; charset=utf-8" });
+		res.end("501 Not Implemented");
 	}
 
 }).listen(443, "0.0.0.0", () => { console.log(`Starting @ https://dairycultist.dev/`); });
