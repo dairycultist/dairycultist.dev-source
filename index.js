@@ -19,8 +19,22 @@ createServer(options, (req, res) => {
 
 	if (req.method == "GET" || req.method == "HEAD") {
 
-		res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-		res.end(fs.readFileSync(HOMEPAGE_FILEPATH, "utf-8"));
+		if (req.url == "/") {
+			
+			res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+			res.end(fs.readFileSync(HOMEPAGE_FILEPATH, "utf-8"));
+			
+		} else {
+
+			try {
+				const img = fs.readFileSync("./cow.png");
+				res.writeHead(200, { "Content-Type": "image/png" });
+				res.end(img);
+			} catch (err) {
+				res.writeHead(404, { "Content-Type": "text/plain" });
+    			res.end("cow.png not found");
+			}
+		}
 
 	} else {
 
