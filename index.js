@@ -24,7 +24,7 @@ createServer(options, (req, res) => {
 			res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
 			res.end(fs.readFileSync(HOMEPAGE_FILEPATH, "utf-8"));
 			
-		} else if (req.url == "/cow.png") { {
+		} else if (req.url == "/cow.png") {
 
 			try {
 				const img = fs.readFileSync("./cow.png");
