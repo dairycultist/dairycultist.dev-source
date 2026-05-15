@@ -14,6 +14,10 @@
 	</style>
 	<script>
 
+		// words that are unchanged: iron, gold, coal, stick, wood, sheep, fire (both noun and verb), chicken (animal), cow, pig
+		// duckling (A baby duck.)
+		// gosling (A baby goose.)
+
 		const dictionary = [
 			{ "anglish": "wordblind", "cat": "Adj", ipa: "", "translations": [ "dyslexic" ], "notes": "" },
 			{ "anglish": "wordblindness", "cat": "N", ipa: "", "translations": [ "dyslexia" ], "notes": "" },
@@ -26,7 +30,7 @@
 			{ "anglish": "lowerd", "cat": "N", ipa: "", "translations": [ "Earth" ], "notes": "Even though 'hell' is Germanic, 'lowerd' sounds cooler." },
 			{ "anglish": "middlerd", "cat": "N", ipa: "", "translations": [ "Earth" ], "notes": "Even though 'earth' is Germanic, 'middlerd' sounds cooler (and has Germanic precedent, see <a href='https://en.wiktionary.org/wiki/myddelerd'>myddelerd</a>)." },
 			{ "anglish": "higherd", "cat": "N", ipa: "", "translations": [ "Earth" ], "notes": "Even though 'heaven' is Germanic, 'higherd' sounds cooler." },
-			{ "anglish": "erd", "cat": "N", ipa: "ɝd", "translations": [ "nature", "wilderness", "earth", "ground", "soil" ], "notes": "To say 'the <strong>natural</strong> hotspring,' you would say 'the hotspring <strong>of erd</strong>.' To say 'mice are <strong>naturally</strong> skittish,' you would say 'mice are <strong>of a skittish erd</strong>.'" },
+			{ "anglish": "erd", "cat": "N", ipa: "ɝd", "translations": [ "nature", "wilderness", "earth", "ground", "soil", "~natural", "~naturally" ], "notes": "To say 'the <strong>natural</strong> hotspring,' you would say 'the hotspring <strong>of erd</strong>.' To say 'mice are <strong>naturally</strong> skittish,' you would say 'mice are <strong>of a skittish erd</strong>.'" },
 			{ "anglish": "farspeaker", "cat": "N", ipa: "", "translations": [ "telephone" ], "notes": "" },
 			{ "anglish": "wordbook", "cat": "N", ipa: "", "translations": [ "dictionary" ], "notes": "" },
 			{ "anglish": "inlandish", "cat": "Adj", ipa: "", "translations": [ "native", "indigenous" ], "notes": "Opposite of outlandish." },
@@ -36,10 +40,23 @@
 			{ "anglish": "hindsight", "cat": "N", ipa: "", "translations": [ "retrospect" ], "notes": "" },
 			{ "anglish": "meld", "cat": "V", ipa: "", "translations": [ "fuse" ], "notes": "" },
 			{ "anglish": "melding", "cat": "N", ipa: "", "translations": [ "fusion", "combination", "alloy" ], "notes": "" },
-			{ "anglish": "frith", "cat": "N", ipa: "", "translations": [ "peace" ], "notes": "To say 'they <strong>peacefully</strong> discussed it,' you would say 'they discussed it <strong>in frith</strong>.'" },
+			{ "anglish": "frith", "cat": "N", ipa: "", "translations": [ "peace", "~peacefully" ], "notes": "To say 'they <strong>peacefully</strong> discussed it,' you would say 'they discussed it <strong>in frith</strong>.'" },
 			{ "anglish": "outlandish", "cat": "Adj", ipa: "", "translations": [ "foreign", "alien" ], "notes": "Opposite of inlandish." },
+			{ "anglish": "baren", "cat": "N", ipa: "", "translations": [ "male person", "man" ], "notes": "" },
+			{ "anglish": "maiden", "cat": "N", ipa: "", "translations": [ "female person", "woman" ], "notes": "" },
+			{ "anglish": "man", "cat": "N", ipa: "", "translations": [ "human", "person" ], "notes": "Of any gender." },
+			{ "anglish": "warding", "cat": "N", ipa: "", "translations": [ "wall" ], "notes": "" },
+			{ "anglish": "cowhide", "cat": "N", ipa: "", "translations": [ "leather" ], "notes": "Even though 'leather' is Germanic, 'cowhide' sounds cooler." },
+			{ "anglish": "lash", "cat": "N", ipa: "", "translations": [ "meat", "flesh" ], "notes": "From Old English <a href='https://en.wiktionary.org/wiki/fl%C3%A6sc#Old_English'>flæsc</a>." },
+			{ "anglish": "cowlash", "cat": "N", ipa: "", "translations": [ "beef", "cow meat" ], "notes": "See lash." },
+			{ "anglish": "piglash", "cat": "N", ipa: "", "translations": [ "pork", "pig meat" ], "notes": "" },
+			{ "anglish": "chickenlash", "cat": "N", ipa: "", "translations": [ "chicken (meat)" ], "notes": "" },
+			{ "anglish": "checkling", "cat": "N", ipa: "", "translations": [ "chick" ], "notes": "A baby chicken." },
+			{ "anglish": "seethe", "cat": "V", ipa: "", "translations": [ "cook" ], "notes": "" },
+			{ "anglish": "bake", "cat": "V", ipa: "", "translations": [ "bake", "roast" ], "notes": "To cook in an enclosure, such as an oven." },
+			{ "anglish": "oven", "cat": "N", ipa: "", "translations": [ "oven", "furnace" ], "notes": "" },
+			{ "anglish": "by word", "cat": "PP", ipa: "", "translations": [ "~verbal", "~verbally" ], "notes": "Ex. 'The <strong>verbal</strong> announcement' => 'The announcement <strong>by word</strong>'; 'They <strong>verbally</strong> agreed' => 'They agreed <strong>by word</strong>'" },
 
-			// Adv. verbally -> by word
 		].sort((a, b) => a.anglish.localeCompare(b.anglish));
 
 		function search() {
