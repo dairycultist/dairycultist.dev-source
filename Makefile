@@ -1,5 +1,8 @@
 .PHONY: run update
 
+test:
+	node index.js --insecure
+
 run:
 	nohup sudo node index.js &
 	echo "\n"

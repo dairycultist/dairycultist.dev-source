@@ -1,19 +1,26 @@
 // nohup sudo node index.js &
 
 const HOMEPAGE_FILEPATH = "./homepage.html";
-const GUESTBOOK_FILEPATH = "./guestbook.txt";
 
 const fs = require("fs");
-const { createServer } = require("node:https");
 
-const sanitizeHtml = require("sanitize-html"); // npm install sanitize-html
+if (process.argv.includes("--insecure")) {
 
-const options = {
-    key: fs.readFileSync("../private.key.pem"),  // path to ssl PRIVATE key from Porkbun
-    cert: fs.readFileSync("../domain.cert.pem"), // path to ssl certificate from Porkbun
-};
+	console.log("Opening on HTTP (--insecure)");
 
-createServer(options, (req, res) => {
+	require("node:http").createServer(handler).listen(80, "0.0.0.0", () => { console.log(`Starting @ http://dairycultist.dev/`); });
+	
+} else {
+
+	console.log("Opening on HTTPS");
+
+	require("node:https").createServer({
+		key: fs.readFileSync("../private.key.pem"),  // path to ssl PRIVATE key from Porkbun
+		cert: fs.readFileSync("../domain.cert.pem"), // path to ssl certificate from Porkbun
+	}, handler).listen(443, "0.0.0.0", () => { console.log(`Starting @ https://dairycultist.dev/`); });
+}
+
+function handler(req, res) {
 
 	console.log("\x1b[90m" + req.method + " " + req.url + "\x1b[0m");
 
@@ -47,4 +54,4 @@ createServer(options, (req, res) => {
 		res.end("501 Not Implemented");
 	}
 
-}).listen(443, "0.0.0.0", () => { console.log(`Starting @ https://dairycultist.dev/`); });
+}
