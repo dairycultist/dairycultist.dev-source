@@ -11,10 +11,22 @@
 		h2 { border-bottom: 1px solid #641111; font-weight: 400; padding-bottom: 0.2em; }
 		main { background: #f0dfbc; padding: 1em; margin: 0 auto; width: 600px; }
 	</style>
+	<script>
+		function search() {
+
+			let searchTerm = document.getElementById("search").value.trim();
+
+			alert("You searched: " + searchTerm);
+		}
+	</script>
 </head>
 <body>
 	<main>
 		<p>This is my version of <a href="https://anglish.org/wiki/Anglish">Anglish</a> which foregoes a <i>little</i> historical accuracy to sound better and vibier, and also with an actually usable dictionary that recognizes homographs and provides pronunciations.</p>
+
+		<input type="text" id="search" placeholder="Search an English word here (not implemented yet)" onkeydown="if (event.key === 'Enter') search()" style="width: 100%; box-sizing: border-box; padding: 0.5em 1em; border-radius: 100px; border: 2px solid #ddc39c;">
+
+		<button type="button" onclick="search()" style="background: #641111; border-radius: 100px; font-weight: 700; color: #f0dfbc; border: 0; padding: 0.4em 0.8em; float: right; transform: translate(-0.5em, -2.4em);">Search</button>
 
 		<h2><strong>wild</strong> [ˈwaɪ̯ld]</h2>
 		<p>N. forest</p>
