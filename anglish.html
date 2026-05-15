@@ -55,6 +55,11 @@
 
 			for (let entry of dictionary) {
 
+				let ipa = "";
+
+				if (entry.ipa.length != 0)
+					ipa = `<p><strong>Pronunciation:</strong> [${ entry.ipa }]</p>`;
+
 				let translations = "";
 
 				for (let trans of entry.translations) {
@@ -62,7 +67,7 @@
 				}
 				translations = translations.substring(0, Math.max(0, translations.length - 2));
 
-				area.innerHTML += `<h2><strong>${ entry.anglish }</strong><sub>${ entry.cat }</sub></h2><p><strong>Pronunciation:</strong> [${ entry.ipa }]</p><p><strong>Translations:</strong> ${ translations }</p><p>${ entry.notes }</p>`;
+				area.innerHTML += `<h2><strong>${ entry.anglish }</strong><sub>${ entry.cat }</sub></h2>${ ipa }<p><strong>Translations:</strong> ${ translations }</p><p>${ entry.notes }</p>`;
 			}
 		}
 	</script>
