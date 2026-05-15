@@ -1,18 +1,18 @@
-// nohup sudo node index.js &
-
 const HOMEPAGE_FILEPATH = "./homepage.html";
+const ANGLISH_FILEPATH = "./anglish.html";
+const COW_IMG_FILEPATH = "./cow.png";
 
 const fs = require("fs");
 
 if (process.argv.includes("--insecure")) {
 
-	console.log("Opening on HTTP (--insecure)");
+	console.log("\nOpening on HTTP (--insecure)");
 
 	require("node:http").createServer(handler).listen(80, "0.0.0.0", () => { console.log(`Starting @ http://dairycultist.dev/`); });
 	
 } else {
 
-	console.log("Opening on HTTPS");
+	console.log("\nOpening on HTTPS");
 
 	require("node:https").createServer({
 		key: fs.readFileSync("../private.key.pem"),  // path to ssl PRIVATE key from Porkbun
@@ -30,17 +30,16 @@ function handler(req, res) {
 			
 			res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
 			res.end(fs.readFileSync(HOMEPAGE_FILEPATH, "utf-8"));
+		
+		} else if (req.url == "/anglish") {
+			
+			res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+			res.end(fs.readFileSync(ANGLISH_FILEPATH, "utf-8"));
 			
 		} else if (req.url == "/cow.png") {
 
-			try {
-				const img = fs.readFileSync("./cow.png");
-				res.writeHead(200, { "Content-Type": "image/png" });
-				res.end(img);
-			} catch (err) {
-				res.writeHead(404, { "Content-Type": "text/plain" });
-    			res.end("cow.png not found");
-			}
+			res.writeHead(200, { "Content-Type": "image/png" });
+			res.end(fs.readFileSync(COW_IMG_FILEPATH));
 			
 		} else {
 			

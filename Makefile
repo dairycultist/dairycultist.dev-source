@@ -1,11 +1,10 @@
-.PHONY: run update
+.PHONY: test run update
 
 test:
 	node index.js --insecure
 
 run:
 	nohup sudo node index.js &
-	echo "\n"
 
 update:
 	git fetch origin main
