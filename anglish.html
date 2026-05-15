@@ -7,10 +7,11 @@
 		body { margin: 0; width: 100%; background-color: #ddc39c; color: #641111; font-family: Arial, Helvetica, sans-serif; }
 		fieldset { border: 1px solid #333339; padding: 1em; margin-top: 2em; }
 		legend { font-weight: 700; }
-		input[type="text"] { background: transparent; font: inherit; color: inherit; border: 1px solid #333339; padding: 2px 4px; }
+		input[type="text"] { background: transparent; font: inherit; color: inherit; width: 100%; box-sizing: border-box; padding: 0.5em 1em; border-radius: 100px; border: 2px solid #ddc39c; }
 		h2 { border-bottom: 1px solid #641111; font-weight: 400; padding-bottom: 0.2em; }
-		main { background: #f0dfbc; padding: 1em; margin: 0 auto; width: 600px; }
+		main { background: #f0dfbc; padding: 1em; margin: 0 auto; width: 800px; min-height: 100vh; box-sizing: border-box; }
 		sub { font-size: 0.6em; padding-left: 0.1em; }
+		.entry { background: #f6e8c6; padding: 0.5em 1em; margin: 0.5em 0; box-sizing: border-box; border-radius: 0.5em; border: 2px solid #ddc39c; }
 	</style>
 	<script>
 
@@ -29,9 +30,9 @@
 			{ "anglish": "ward", "cat": "N", ipa: "", "translations": [ "guard", "warden" ], "notes": "" },
 			{ "anglish": "ward", "cat": "V", ipa: "", "translations": [ "guard", "protect" ], "notes": "" },
 			{ "anglish": "folkward", "cat": "N", ipa: "", "translations": [ "police" ], "notes": "" },
-			{ "anglish": "lowerd", "cat": "N", ipa: "", "translations": [ "Earth" ], "notes": "Even though 'hell' is Germanic, 'lowerd' sounds cooler." },
+			{ "anglish": "lowerd", "cat": "N", ipa: "", "translations": [ "hell" ], "notes": "Even though 'hell' is Germanic, 'lowerd' sounds cooler." },
 			{ "anglish": "middlerd", "cat": "N", ipa: "", "translations": [ "Earth" ], "notes": "Even though 'earth' is Germanic, 'middlerd' sounds cooler (and has Germanic precedent, see <a href='https://en.wiktionary.org/wiki/myddelerd'>myddelerd</a>)." },
-			{ "anglish": "higherd", "cat": "N", ipa: "", "translations": [ "Earth" ], "notes": "Even though 'heaven' is Germanic, 'higherd' sounds cooler." },
+			{ "anglish": "higherd", "cat": "N", ipa: "", "translations": [ "heaven" ], "notes": "Even though 'heaven' is Germanic, 'higherd' sounds cooler." },
 			{ "anglish": "erd", "cat": "N", ipa: "ɝd", "translations": [ "nature", "wilderness", "earth", "ground", "soil", "~natural", "~naturally" ], "notes": "To say 'the <strong>natural</strong> hotspring,' you would say 'the hotspring <strong>of erd</strong>.' To say 'mice are <strong>naturally</strong> skittish,' you would say 'mice are <strong>of a skittish erd</strong>.'" },
 			{ "anglish": "farspeaker", "cat": "N", ipa: "", "translations": [ "telephone" ], "notes": "" },
 			{ "anglish": "wordbook", "cat": "N", ipa: "", "translations": [ "dictionary" ], "notes": "" },
@@ -58,7 +59,7 @@
 			{ "anglish": "bake", "cat": "V", ipa: "", "translations": [ "bake", "roast" ], "notes": "To cook in an enclosure, such as an oven." },
 			{ "anglish": "oven", "cat": "N", ipa: "", "translations": [ "oven", "furnace" ], "notes": "" },
 			{ "anglish": "by word", "cat": "PrepP", ipa: "", "translations": [ "~verbal", "~verbally" ], "notes": "Ex. 'The <strong>verbal</strong> announcement' => 'The announcement <strong>by word</strong>'; 'They <strong>verbally</strong> agreed' => 'They agreed <strong>by word</strong>.'" },
-			{ "anglish": "skiemight", "cat": "N", ipa: "", "translations": [ "electricity" ], "notes": "From Middle English pronunciation of <a href='https://en.wiktionary.org/wiki/sky#Middle_English'>sky</a>." },
+			{ "anglish": "skiemight", "cat": "N", ipa: "[ˈskiːmaɪ̯t]", "translations": [ "electricity", "lightning" ], "notes": "Literally 'sky power.' From Middle English pronunciation of <a href='https://en.wiktionary.org/wiki/sky#Middle_English'>sky</a>." },
 			{ "anglish": "horsemight", "cat": "N", ipa: "", "translations": [ "horsepower" ], "notes": "" },
 			{ "anglish": "might", "cat": "N", ipa: "", "translations": [ "strength", "power" ], "notes": "" },
 			{ "anglish": "mein", "cat": "N", ipa: "", "translations": [ "magic" ], "notes": "From Middle English <a href='https://en.wiktionary.org/wiki/mayn'>mayn</a>." },
@@ -67,16 +68,15 @@
 
 		function search() {
 
-			const searchTerm = document.getElementById("search").value.trim();
-
-			alert("You searched: " + searchTerm);
-		}
-
-		function populate() {
-
+			const searchTerm = document.getElementById("search").value.trim().toLowerCase();
 			const area = document.getElementById("lexicon-area");
 
+			area.innerHTML = "";
+
 			for (let entry of dictionary) {
+
+				if (!(entry.translations.join() + " " + entry.anglish).toLowerCase.includes(searchTerm))
+					continue;
 
 				let ipa = "";
 
@@ -90,16 +90,16 @@
 				}
 				translations = translations.substring(0, Math.max(0, translations.length - 2));
 
-				area.innerHTML += `<h2><strong>${ entry.anglish }</strong><sub>${ entry.cat }</sub></h2>${ ipa }<p><strong>Translations:</strong> ${ translations }</p><p>${ entry.notes }</p>`;
+				area.innerHTML += `<div class="entry"><h2><strong>${ entry.anglish }</strong><sub>${ entry.cat }</sub></h2>${ ipa }<p><strong>Translations:</strong> ${ translations }</p><p>${ entry.notes }</p></div>`;
 			}
 		}
 	</script>
 </head>
-<body onload="populate()">
+<body onload="search()">
 	<main>
 		<p>This is my version of <a href="https://anglish.org/wiki/Anglish">Anglish</a> which foregoes a <i>little</i> historical accuracy to sound better and vibier, and also with an actually usable dictionary that recognizes homographs and provides pronunciations.</p>
 
-		<input type="text" id="search" placeholder="Search an English word here (not implemented yet)" onkeydown="if (event.key === 'Enter') search()" style="width: 100%; box-sizing: border-box; padding: 0.5em 1em; border-radius: 100px; border: 2px solid #ddc39c;">
+		<input type="text" id="search" placeholder="Search an English/Anglish word here" onkeydown="if (event.key === 'Enter') search()">
 
 		<button type="button" onclick="search()" style="background: #641111; border-radius: 100px; font-weight: 700; color: #f0dfbc; border: 0; padding: 0.4em 0.8em; float: right; transform: translate(-0.5em, -2.4em);">Search</button>
 
