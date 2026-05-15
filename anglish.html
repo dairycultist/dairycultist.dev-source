@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Anglish | dairycultist.dev</title>
 	<style>
-		body { margin: 0; width: 100%; background-color: #ddc39c; color: #641111; font-family: Arial, Helvetica, sans-serif; }
+		body { margin: 0; width: 100%; background: #ddc39c; color: #641111; font-family: Arial, Helvetica, sans-serif; }
 		fieldset { border: 1px solid #333339; padding: 1em; margin-top: 2em; }
 		legend { font-weight: 700; }
 		input[type="text"] { background: #f6e8c6; font: inherit; color: inherit; width: 100%; box-sizing: border-box; padding: 0.5em 1em; border-radius: 100px; border: 2px solid #ddc39c; }
@@ -30,6 +30,8 @@
 			{ "anglish": "word", "cat": "N", ipa: "", "translations": [], "notes": "" },
 			{ "anglish": "fire", "cat": "N", ipa: "", "translations": [], "notes": "" },
 			{ "anglish": "fire", "cat": "V", ipa: "", "translations": [], "notes": "I.e. to fire clay or metal in a kiln or similar." },
+			{ "anglish": "day", "cat": "N", ipa: "", "translations": [], "notes": "" },
+			{ "anglish": "night", "cat": "N", ipa: "", "translations": [], "notes": "" },
 
 			{ "anglish": "wordblind", "cat": "Adj", ipa: "", "translations": [ "dyslexic" ], "notes": "" },
 			{ "anglish": "wordblindness", "cat": "N", ipa: "", "translations": [ "dyslexia" ], "notes": "" },
@@ -49,7 +51,7 @@
 			{ "anglish": "wordbook", "cat": "N", ipa: "", "translations": [ "dictionary" ], "notes": "" },
 			{ "anglish": "inlandish", "cat": "Adj", ipa: "", "translations": [ "native", "indigenous" ], "notes": "Opposite of outlandish." },
 			{ "anglish": "fathom", "cat": "V", ipa: "", "translations": [ "imagine", "believe" ], "notes": "" },
-			{ "anglish": "mint", "cat": "N", ipa: "", "translations": [ "coin" ], "notes": "" },
+			{ "anglish": "sterling", "cat": "N", ipa: "", "translations": [ "coin" ], "notes": "From Middle English <a href='https://en.wiktionary.org/wiki/sterre#Middle_English'>sterre</a> ('star') + -ling." },
 			{ "anglish": "foregoer", "cat": "N", ipa: "", "translations": [ "predecessor" ], "notes": "" },
 			{ "anglish": "hindsight", "cat": "N", ipa: "", "translations": [ "retrospect" ], "notes": "" },
 			{ "anglish": "meld", "cat": "V", ipa: "", "translations": [ "fuse", "combine" ], "notes": "" },
@@ -74,6 +76,10 @@
 			{ "anglish": "horsemight", "cat": "N", ipa: "", "translations": [ "horsepower" ], "notes": "" },
 			{ "anglish": "might", "cat": "N", ipa: "", "translations": [ "strength", "power" ], "notes": "" },
 			{ "anglish": "mein", "cat": "N", ipa: "", "translations": [ "magic" ], "notes": "From Middle English <a href='https://en.wiktionary.org/wiki/mayn'>mayn</a>." },
+			{ "anglish": "board", "cat": "N", ipa: "", "translations": [ "table" ], "notes": "" },
+			{ "anglish": "erdglass", "cat": "N", ipa: "", "translations": [ "emerald" ], "notes": "Literally 'earth glass.'" },
+			{ "anglish": "sunglass", "cat": "N", ipa: "", "translations": [ "diamond" ], "notes": "" },
+			{ "anglish": "freya", "cat": "N", ipa: "", "translations": [ "obsidian" ], "notes": "Named such in reference to one passage of the poem <a href='https://en.wikipedia.org/wiki/H%C3%B6rgr#Literary'>Hyndluljóð</a> which described 'stone [becoming] glass' via the intense fire of rituals to the goddess Freyja." },
 
 		].sort((a, b) => a.anglish.localeCompare(b.anglish));
 
@@ -97,17 +103,12 @@
 				let translations = "";
 
 				if (entry.translations.length == 0) {
-
 					translations = "<strong>Translation:</strong> Same meaning as in English.";
-
 				} else {
-
-					if (entry.translations.length == 1) {
+					if (entry.translations.length == 1)
 						translations = "<strong>Translation:</strong> ";
-					} else {
+					else
 						translations = "<strong>Translations:</strong> ";
-					}
-
 					for (let trans of entry.translations)
 						translations += trans + ", ";
 					translations = translations.substring(0, translations.length - 2);
@@ -124,7 +125,7 @@
 
 		<input type="text" id="search" placeholder="Search an English/Anglish word here" onkeydown="if (event.key === 'Enter') search()">
 
-		<button type="button" onclick="search()" style="background: #641111; border-radius: 100px; font-weight: 700; color: #f0dfbc; border: 0; padding: 0.4em 0.8em; float: right; transform: translate(-0.5em, -2.4em);">Search</button>
+		<button type="button" onclick="search()" style="background: #641111; border-radius: 100px; font-weight: 700; color: #f6e8c6; border: 0; padding: 0.4em 0.8em; float: right; transform: translate(-0.5em, -2.4em);">Search</button>
 
 		<div id="lexicon-area"></div>
 	</main>
