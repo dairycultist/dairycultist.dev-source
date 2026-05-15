@@ -14,13 +14,15 @@
 	</style>
 	<script>
 
-		// words that are unchanged: iron, gold, coal, stick, wood, sheep, fire (both noun and verb), chicken (animal), cow, pig
+		// words that are unchanged: iron, gold, coal, stick, wood, sheep, fire (both noun and verb), chicken (animal), cow, pig, word
 		// duckling (A baby duck.)
 		// gosling (A baby goose.)
 
 		const dictionary = [
 			{ "anglish": "wordblind", "cat": "Adj", ipa: "", "translations": [ "dyslexic" ], "notes": "" },
 			{ "anglish": "wordblindness", "cat": "N", ipa: "", "translations": [ "dyslexia" ], "notes": "" },
+			{ "anglish": "hewblind", "cat": "Adj", ipa: "", "translations": [ "colorblind" ], "notes": "" },
+			{ "anglish": "hewblindness", "cat": "N", ipa: "", "translations": [ "colorblindness" ], "notes": "" },
 			{ "anglish": "hew", "cat": "N", ipa: "", "translations": [ "color" ], "notes": "" },
 			{ "anglish": "bewitching", "cat": "Adj", ipa: "", "translations": [ "fascinating" ], "notes": "" },
 			{ "anglish": "wild", "cat": "N", ipa: "waɪ̯ld", "translations": [ "forest" ], "notes": "" },
@@ -38,13 +40,13 @@
 			{ "anglish": "mint", "cat": "N", ipa: "", "translations": [ "coin" ], "notes": "" },
 			{ "anglish": "foregoer", "cat": "N", ipa: "", "translations": [ "predecessor" ], "notes": "" },
 			{ "anglish": "hindsight", "cat": "N", ipa: "", "translations": [ "retrospect" ], "notes": "" },
-			{ "anglish": "meld", "cat": "V", ipa: "", "translations": [ "fuse" ], "notes": "" },
+			{ "anglish": "meld", "cat": "V", ipa: "", "translations": [ "fuse", "combine" ], "notes": "" },
 			{ "anglish": "melding", "cat": "N", ipa: "", "translations": [ "fusion", "combination", "alloy" ], "notes": "" },
 			{ "anglish": "frith", "cat": "N", ipa: "", "translations": [ "peace", "~peacefully" ], "notes": "To say 'they <strong>peacefully</strong> discussed it,' you would say 'they discussed it <strong>in frith</strong>.'" },
 			{ "anglish": "outlandish", "cat": "Adj", ipa: "", "translations": [ "foreign", "alien" ], "notes": "Opposite of inlandish." },
 			{ "anglish": "baren", "cat": "N", ipa: "", "translations": [ "male person", "man" ], "notes": "" },
-			{ "anglish": "maiden", "cat": "N", ipa: "", "translations": [ "female person", "woman" ], "notes": "" },
-			{ "anglish": "man", "cat": "N", ipa: "", "translations": [ "human", "person" ], "notes": "Of any gender." },
+			{ "anglish": "maiden", "cat": "N", ipa: "ˈmeɪ̯dən", "translations": [ "female person", "woman" ], "notes": "" },
+			{ "anglish": "man", "cat": "N", ipa: "ˈbɛɹən", "translations": [ "human", "person" ], "notes": "Of any gender." },
 			{ "anglish": "warding", "cat": "N", ipa: "", "translations": [ "wall" ], "notes": "" },
 			{ "anglish": "cowhide", "cat": "N", ipa: "", "translations": [ "leather" ], "notes": "Even though 'leather' is Germanic, 'cowhide' sounds cooler." },
 			{ "anglish": "lash", "cat": "N", ipa: "", "translations": [ "meat", "flesh" ], "notes": "From Old English <a href='https://en.wiktionary.org/wiki/fl%C3%A6sc#Old_English'>flæsc</a>." },
@@ -55,7 +57,11 @@
 			{ "anglish": "seethe", "cat": "V", ipa: "", "translations": [ "cook" ], "notes": "" },
 			{ "anglish": "bake", "cat": "V", ipa: "", "translations": [ "bake", "roast" ], "notes": "To cook in an enclosure, such as an oven." },
 			{ "anglish": "oven", "cat": "N", ipa: "", "translations": [ "oven", "furnace" ], "notes": "" },
-			{ "anglish": "by word", "cat": "PP", ipa: "", "translations": [ "~verbal", "~verbally" ], "notes": "Ex. 'The <strong>verbal</strong> announcement' => 'The announcement <strong>by word</strong>'; 'They <strong>verbally</strong> agreed' => 'They agreed <strong>by word</strong>'" },
+			{ "anglish": "by word", "cat": "PrepP", ipa: "", "translations": [ "~verbal", "~verbally" ], "notes": "Ex. 'The <strong>verbal</strong> announcement' => 'The announcement <strong>by word</strong>'; 'They <strong>verbally</strong> agreed' => 'They agreed <strong>by word</strong>.'" },
+			{ "anglish": "skiemight", "cat": "N", ipa: "", "translations": [ "electricity" ], "notes": "From Middle English pronunciation of <a href='https://en.wiktionary.org/wiki/sky#Middle_English'>sky</a>." },
+			{ "anglish": "horsemight", "cat": "N", ipa: "", "translations": [ "horsepower" ], "notes": "" },
+			{ "anglish": "might", "cat": "N", ipa: "", "translations": [ "strength", "power" ], "notes": "" },
+			{ "anglish": "mein", "cat": "N", ipa: "", "translations": [ "magic" ], "notes": "From Middle English <a href='https://en.wiktionary.org/wiki/mayn'>mayn</a>." },
 
 		].sort((a, b) => a.anglish.localeCompare(b.anglish));
 
